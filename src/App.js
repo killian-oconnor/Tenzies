@@ -1,26 +1,6 @@
 import './App.css';
 import Die from "./components/die"
 
-// function App() {
-//   return (
-//     <main>
-//         <container className="diceContainer">
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//             <Die />
-//         </container>
-//     </main>
-//   );
-// }
-
-// export default App;
 
 
 import React from "react"
@@ -47,7 +27,7 @@ export default function App() {
     const [dice, setDice] = React.useState(allNewDice())
     const [tenzies, setTenzies] = React.useState(false)
     const [rollCounter, setRollCounter] = React.useState(0)
-    const[lowScore, setLowScore] = React.useState(localStorage.getItem("lowestScore") || 0);
+    const [lowScore, setLowScore] = React.useState(localStorage.getItem("lowestScore") || 0);
     
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
@@ -93,7 +73,7 @@ export default function App() {
                     generateNewDie()
             }))
         } else {
-            if (seconds + (minutes * 60) < lowScore) {
+            if (seconds + (minutes * 60) < lowScore || lowScore === 0) {
               setLowScore(seconds + (minutes * 60)); 
             }
             reset();
